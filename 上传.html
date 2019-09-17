@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script type="text/javascript">
+    window.onload = function() {
+      var btn=document.querySelectorAll('input');
+      var progress=document.querySelector('progress');
+
+      btn[1].onclick=function  () {
+        var ajax=new XMLHttpRequest();
+        ajax.open('post','post_file.php',true);
+        ajax.upload.onprogress=function(ev){
+          progress.value=ev.loaded/ev.total*100;
+        };
+        var formadata=new Formadata();
+        for (var i = 0; i < btn[0].files.length; i++) {
+          formadata.append('file',input[0].files[i]);
+        }
+        ajax.setrequestheader("CONTENT-TYPE", "application/x-www-form-urlencoded")
+        ajax.send(formadata);
+        ajax.onload=function(){
+
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <progress value="0" max="100">0%</progress>
+  <input type="file" name="">
+  <input type="button" name="" value="提交">
+</body>
+
+</html>
